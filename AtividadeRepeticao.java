@@ -64,6 +64,15 @@ public class AtividadeRepeticao {
 	private int daniela;
 	private int carlos;
 	private int samira;
+	private double mediaidade;
+	private int somaidade;
+	private int n;
+	private float medianotaaluno;
+	private float somanotaaluno;
+	private boolean validacao;
+	private int maiorvalor;
+	private int menorvalor;
+	private int somavalor;
 
 	public void Votacao(int voto) {
 		if (voto == 1) {
@@ -302,23 +311,20 @@ public class AtividadeRepeticao {
 			System.out.println("Valor médio por CD: " + mediacd);
 		}
 	}
-	
+
 	public void MediaAluno(int quantidade, int aluno) {
-		mediaaluno = (float)aluno/(float)quantidade;
+		mediaaluno = (float) aluno / (float) quantidade;
 		System.out.println("Média de alunos por turma: " + mediaaluno);
 	}
-	
+
 	public void Votacao(int totalvotante, int voto, int i) {
-		if(voto == 1) {
+		if (voto == 1) {
 			daniela += 1;
-		}
-		else if(voto == 2) {
+		} else if (voto == 2) {
 			carlos += 1;
-		}
-		else if(voto == 3) {
+		} else if (voto == 3) {
 			samira += 1;
-		}
-		else {
+		} else {
 			System.out.println("Voto inválido!");
 		}
 		if (i == (totalvotante - 1)) {
@@ -328,6 +334,86 @@ public class AtividadeRepeticao {
 			System.out.println("Daniela: " + daniela);
 			System.out.println("Samira: " + samira);
 			System.out.println("Carlos: " + carlos);
+		}
+	}
+
+	public void VerificaFaixaEtaria(int idade, String condicao) {
+		n += 1;
+		somaidade += idade;
+		mediaidade = (float) somaidade / (float) n;
+		if (condicao.equalsIgnoreCase("N")) {
+			if (mediaidade >= 0 && mediaidade <= 25) {
+				System.out.println("A turma é jovem!");
+			} else if (mediaidade >= 26 && mediaidade <= 60) {
+				System.out.println("A turma é adulta!");
+			} else {
+				System.out.println("A turma é idosa!");
+			}
+		}
+	}
+
+	public void MediaNotas(float nota) {
+		if (nota != -1) {
+			n += 1;
+			somanotaaluno += nota;
+			medianotaaluno = somanotaaluno / n;
+		} else {
+			System.out.println(String.format("A média das notas é %.2f", medianotaaluno));
+		}
+	}
+
+	public void MostraPrimo(int intervalo) {
+		if (intervalo == 1) {
+			System.out.print("Não há números primos para este intervalo.");
+		} else if (intervalo == 2) {
+			System.out.print("2");
+		} else {
+			System.out.print("2");
+		}
+		for (int i = 1; i <= intervalo; i++) {
+			for (int j = 1; j < i; j++) {
+				if (j != 1 && j != i) {
+					if (i % j == 0) {
+						validacao = false;
+						break;
+					} else {
+						validacao = true;
+					}
+				}
+			}
+			if (validacao == true) {
+				System.out.print(" - " + i);
+			}
+		}
+	}
+
+	public void Conjunto(int numero, int marcador, String parar) {
+		somavalor += numero;
+		if (marcador == 1) {
+			maiorvalor = numero;
+			menorvalor = numero;
+		} else {
+			if (numero > maiorvalor) {
+				maiorvalor = numero;
+			}
+			if (numero < menorvalor) {
+				menorvalor = numero;
+			}
+			if (parar.equalsIgnoreCase("S"))
+				System.out.println("Maior valor: " + maiorvalor);
+			System.out.println("Menor valor: " + menorvalor);
+			System.out.println("Soma dos valores: " + somavalor);
+		}
+	}
+
+	public void Fibonacci(int n) {
+		System.out.print("1 - 1");
+		int vet[] = new int[n];
+		vet[0] = 1;
+		vet[1] = 1;
+		for (int i = 2; i < n; i++) {
+			vet[i] = vet[i - 1] + vet[i - 2];
+			System.out.print(" - " + vet[i]);
 		}
 	}
 }
